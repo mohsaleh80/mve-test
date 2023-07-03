@@ -1,0 +1,3 @@
+package.json
+
+"dev": "npm run development",

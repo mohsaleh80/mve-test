@@ -1,0 +1,1 @@
+<img src="{{ asset('frontend/assets/imgs/theme/logo-bravo-main-2.png') }}" />
