@@ -665,4 +665,29 @@ public function SubCategoryProductShow($flag,$id){
         return view('frontend.vendor.vendor_all',compact('vendors','vendorsCount','sort_flag','show_flag'));
     }
 
+
+
+// Product Modal Quick View With Ajax
+
+    public function ProductViewAjax($id){
+
+        $product = Product::with('category','subcategory','brand')->findOrFail($id);
+        $color = $product->product_color;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
+        $multiImage = MultiImg::where('product_id',$id)->get();
+
+        return response()->json(array(
+
+         'product' => $product,
+         'color' => $product_color,
+         'size' => $product_size,
+         'multiImage' => $multiImage,
+
+        ));
+
+     }// End Method
+
 }

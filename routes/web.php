@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -273,3 +274,22 @@ Route::get('/subcategory/details/{id}/{slug}', [IndexController::class, 'SubCate
 Route::get('/subcategory/products/sort/{flag}/{subcategory_id}' ,  [IndexController::class,'SubCategoryProductSort'])->name('subcategory.product.sort');
 Route::get('/subcategory/products/filter/{flag}/{subcategory_id}' ,  [IndexController::class,'SubCategoryProductFilter'])->name('subcategory.product.filter');
 Route::get('/subcategory/products/show/{flag}/{subcategory_id}' ,  [IndexController::class,'SubCategoryProductShow'])->name('subcategory.product.show');
+
+// Product Modal Quick View With Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+
+/// Add to cart store data
+
+/*
+Route::middleware(['auth','role:user'])->group(function () {
+});
+ */ 
+    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+    // Get Data from mini Cart
+    Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+    Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+
+    
+

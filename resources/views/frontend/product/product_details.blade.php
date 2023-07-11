@@ -24,19 +24,21 @@
                                 <!-- MAIN SLIDES -->
                                 <div class="product-image-slider">
                                     <figure class="border-radius-10">
-                                        <img src="{{asset($product->product_thambnail)}}" alt="product image" />
+                                        <img src="{{asset($product->product_thambnail)}}" id="mainImage" alt="product image" />
                                     </figure>
+                                    {{--
                                     @foreach($multiImage as $img)
                                         <figure class="border-radius-10">
                                             <img src="{{ asset($img->photo_name) }}" alt="product image" />
                                         </figure>
                                     @endforeach
+                                    --}}
                                 </div>
                                 <!-- THUMBNAILS -->
                                 <div class="slider-nav-thumbnails">
-                                    <div><img src="{{asset($product->product_thambnail)}}" alt="product image" /></div>
+                                    <div><img src="{{asset($product->product_thambnail)}}" onclick="replaceMainImg(this.src)" onmouseover="replaceMainImg(this.src)" alt="product image" /></div>
                                     @foreach($multiImage as $img)
-                                     <div><img src="{{ asset($img->photo_name) }}" alt="product image" /></div>
+                                     <div><img src="{{ asset($img->photo_name) }}" alt="product image" onclick="replaceMainImg(this.src)" onmouseover="replaceMainImg(this.src)"/></div>
                                     @endforeach
                                 </div>
                             </div>
@@ -52,7 +54,7 @@
                                     <span class="stock-status out-stock"> Stock Out </span>                            
                                 @endif
 
-                                <h2 class="title-detail text-brand">{{$product->product_name}}</h2>
+                                <h2 class="title-detail text-brand" id="details_pname">{{$product->product_name}}</h2>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
@@ -85,14 +87,14 @@
                                     </p>
                                 </div>
                                 @if(! is_null($product->product_size))
-                                    <div class="attr-detail attr-size mb-30">
+                                    <div class="attr-detail attr-size mb-30" id="details_sizeArea">
                                         <strong class="mr-10" style="width:50px;">Size : </strong>
                                         @php
                                         $sizes = explode(",", $product->product_size);
                                         @endphp
                                     
-                                        <select class="form-control unicase-form-control" id="size">
-                                            <option selected="" disabled="">--Choose Size--</option>
+                                        <select class="form-control unicase-form-control" id="details_size">
+                                            <option selected="" value="" disabled="">--Choose Size--</option>
                                             @foreach($sizes as $size)
                                             <option value="{{ $size }}">{{ ucwords($size)  }}</option>
                                             @endforeach
@@ -100,14 +102,14 @@
                                     </div>
                                 @endif
                                 @if(! is_null($product->product_color))
-                                    <div class="attr-detail attr-size mb-30">
+                                    <div class="attr-detail attr-size mb-30" id="details_colorArea">
                                         <strong class="mr-10" style="width:60px;">Color : </strong>
                                         @php
                                         $colors = explode(",", $product->product_color);
                                         @endphp
                                        
-                                        <select class="form-control unicase-form-control" id="size">
-                                            <option selected="" disabled="">--Choose Color--</option>
+                                        <select class="form-control unicase-form-control" id="details_color">
+                                            <option selected="" value="" disabled="">--Choose Color--</option>
                                             @foreach($colors as $color)
                                             <option value="{{ $color }}">{{ ucwords($color)  }}</option>
                                             @endforeach
@@ -116,12 +118,12 @@
                                 @endif
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
-                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                        <a href="javascript:DetailsqtyDown()" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                        <input type="text" name="quantity" id="detailsQuanitity" class="qty-val" value="1" min="1">
+                                        <a href="javascript:DetailsqtyUp()" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                        <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails({{$product->id}})"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
@@ -631,4 +633,40 @@
         </div>
     </div>
 </main>
+
+<script>
+
+    function DetailsqtyUp(){
+           
+           var qty = parseInt(document.getElementById("detailsQuanitity").value);
+           qty = qty+1;
+           document.getElementById("detailsQuanitity").value= qty;
+           
+            
+        }
+    
+        function DetailsqtyDown(){
+           
+           var qty = parseInt(document.getElementById("detailsQuanitity").value);
+           qty = qty - 1;
+           // min value = 1;
+           if(qty == 0){ qty = 1;}
+           document.getElementById("detailsQuanitity").value= qty;
+           
+            
+        }
+    </script>
+
+    <script>
+
+          
+        
+        function replaceMainImg(srcImg){
+
+            //alert(srcImg);
+            $('#mainImage').attr('src',srcImg);
+        }
+
+    </script>
+    
 @endsection
