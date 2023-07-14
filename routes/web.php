@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -289,6 +290,27 @@ Route::middleware(['auth','role:user'])->group(function () {
     // Get Data from mini Cart
     Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
     Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+
+/// Add to Wishlist 
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+
+/// User All Route
+Route::middleware(['auth','role:user'])->group(function() {
+
+    // Wishlist All Route 
+   Route::controller(WishlistController::class)->group(function(){
+
+       Route::get('/wishlist' , 'AllWishlist')->name('wishlist'); 
+       //Ajax in user dasgboard and frontend Dashboard
+       Route::get('/get-wishlist-count' , 'getWishlistCount');
+       Route::get('/get-wishlist-product' , 'GetWishlistProduct');
+       Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
+   
+   }); 
+   
+}); // end group middleware   
+
 
 
     

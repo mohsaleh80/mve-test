@@ -92,6 +92,125 @@
  @endif 
 </script>
 
+!--  /// Start Load Wishlist Data -->
+<script type="text/javascript">
+        
+    function wishlistCount(){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/get-wishlist-count/",
+            success:function(response){
+
+                //alert(response.wishQty);
+                $('#userWishListCount').text(response.wishQty); 
+
+            }
+        })
+    }
+
+    wishlistCount();
+</script>
+
+<!--  /// End Load Wishlist Count -->
+
+
+<script type="text/javascript">
+    
+    function miniCart(){
+       $.ajax({
+           type: 'GET',
+           url: '/product/mini/cart',
+           dataType: 'json',
+           success:function(response){
+               console.log(response)
+
+               var miniCart = "";
+               $.each(response.carts, function(key,value){
+
+                miniCart += `<li>
+                                 <div class="shopping-cart-img">
+                                    <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image}" /></a>
+                                 </div>
+                                 <div class="shopping-cart-title" style="margin: -73px 14px 14px 85px; ">
+                                    <h4><a href="shop-product-right.html">${value.name}</a></h4>
+                                    <h4><span>${value.qty}× </span>$${value.price}</h4>
+                                 </div>
+                                 <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
+                                    <a type="submit" onclick="miniCartRemove(this.id)" id="${value.rowId}"><i class="fi-rs-cross-small"></i></a>
+                                  </div>
+                               </li>    
+                               <hr>        
+                            `;
+               });
+
+               $('#miniCartShow').html(miniCart);
+               $('#cartQty').text(response.cartQty);
+               $('#cartTotal').text("$"+response.cartTotal);
+           }
+       })
+    }
+
+    // call function
+    miniCart();
+</script>
+
+<script >
+
+  function miniCartRemove(rowId){
+
+       //alert(rowId);
+       $.ajax({
+        type: 'GET',
+        url: '/minicart/product/remove/'+rowId,
+        dataType:'json',
+        success:function(response){
+
+                //call miniCart
+                miniCart();
+                //display Sweet Alert Message
+                Swal.fire({     
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: response.success,
+                                showConfirmButton: false,
+                                timer: 4000,
+                                showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                            });
+            },
+         error: (error) => {
+                     
+                     Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Product not removed!',
+                                showConfirmButton: false,
+                                timer: 4000,
+                                showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                });
+
+
+                          }//end error
+
+
+    }); //end ajax
+
+  } // removeMiniCart
+
+</script>
+
     </body>
 
     </html>    
