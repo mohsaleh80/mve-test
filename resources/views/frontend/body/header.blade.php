@@ -167,7 +167,7 @@
                                                 <a href="{{ route('user.dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('user.dashboard') }}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
+                                                <a href="{{ route('wishlist') }}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
                                             </li>
                                             <li>
                                                 <a href="{{ route('user.dashboard') }}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>

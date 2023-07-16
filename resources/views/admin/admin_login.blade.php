@@ -97,6 +97,10 @@
 												<div class="d-grid">
 													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
 												</div>
+												<br>
+												<div class="d-grid text-center">
+													<a href="{{ route('welcome') }}">Home</a>
+												</div>
 											</div>
 										</form>
 									</div>

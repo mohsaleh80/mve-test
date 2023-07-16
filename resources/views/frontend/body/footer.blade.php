@@ -140,8 +140,8 @@
                     <h4 class="widget-title">Corporate</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <li><a href="{{route('become.vendor')}}">Become a Vendor</a></li>
-                        <li><a href="#">Affiliate Program</a></li>
-                        <li><a href="#">Farm Business</a></li>
+                        <li><a href="{{route('admin.login')}}">Admin</a></li>
+                        <li><a href="{{route('vendor.login')}}">Vendor</a></li>
                         <li><a href="#">Farm Careers</a></li>
                         <li><a href="#">Our Suppliers</a></li>
                         <li><a href="#">Accessibility</a></li>

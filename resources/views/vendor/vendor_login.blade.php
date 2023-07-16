@@ -39,7 +39,7 @@
 								<div class="border p-4 rounded " style="background-color:#F0F8FF">
 									<div class="text-center">
 										<h3 class="">Sign in</h3>
-										<p>Don't have an account yet? <a href="{{ route('register') }}">Sign up here</a>
+										<p>Don't have an account yet? <a href="{{route('become.vendor')}}">Sign up here</a>
 										</p>
 									</div>
 <!--
@@ -97,6 +97,10 @@
 											<div class="col-12">
 												<div class="d-grid">
 													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+												</div>
+												<br>
+												<div class="d-grid text-center">
+													<a href="{{ route('welcome') }}">Home</a>
 												</div>
 											</div>
 										</form>
