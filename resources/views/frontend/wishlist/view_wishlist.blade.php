@@ -64,7 +64,8 @@
                                     </td>
                                     <td class="text-right" data-title="Cart">
                                         @if($wish['product']['product_qty'] > 0)
-                                        <button class="btn btn-sm">Add to cart</button>
+                                        <!--<button class="btn btn-sm">Add to cart</button>-->
+                                        <a aria-label="Quick view"  data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{$wish['product']['id']}}" onclick="productQuickView(this.id)" class="btn btn-sm  hover-up" ><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                                         @else
                                         <button class="btn btn-sm btn-secondary">Contact Us</button>
                                         @endif

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('subcategory_slug');
             $table->timestamps();
         });
+
+        
     }
 
     /**

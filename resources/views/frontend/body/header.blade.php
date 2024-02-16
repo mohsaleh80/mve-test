@@ -6,14 +6,18 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-4">
-                    <div class="header-info" >
+
+
+                    <div class="header-info"  hidden="true">
                         <ul >
                             
-                            <li ><a href="page-account.html" class="text-brand">My Cart</a></li>
+                            <li ><a href="{{route('myCart')}}" class="text-brand">My Cart</a></li>
                             <li><a href="shop-wishlist.html" class="text-brand">Checkout</a></li>
                             <li><a href="shop-order.html" class="text-brand">Order Tracking</a></li>
                         </ul>
                     </div>
+
+
                 </div>
                 <div class="col-xl-6 col-lg-4">
                     <div class="text-center">
@@ -30,7 +34,7 @@
                     <div class="header-info header-info-right">
                         <ul>
                            
-                            <li >
+                            <li  hidden="true">
                                 <a class="language-dropdown-active text-brand" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
                                     <li>
@@ -103,9 +107,15 @@
                                     </select>
                                 </form>
                             </div>
-                           
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="{{ route('compare') }}">
+                                    <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16"> <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" fill="white"></path> <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" fill="white"></path> </svg>
+                                    <span class="pro-count blue" id="userCompareCount">0</span>
+                                </a>
+                                <a href="{{ route('compare') }}"><span class="lable ml-0" style="color:white">Compare</span></a>
+                            </div>
+                            <div class="header-action-icon-2">
+                                <a href="{{ route('wishlist') }}">
                                    <!-- <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" /> -->
                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" 
                                      class="bi bi-heart" viewBox="0 0 16 16">
@@ -113,10 +123,10 @@
                                     </svg>
                                     <span class="pro-count blue" id="userWishListCount">0</span>
                                 </a>
-                                <a href="{{ route('wishlist') }}"><span class="lable " style="color:white">Wishlist</span></a>
+                                <a href="{{ route('wishlist') }}"><span class="lable" style="color:white">Wishlist</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{{route('myCart')}}">
                                     <!--<img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />-->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" 
                                       class="bi bi-cart4" viewBox="0 0 16 16">
@@ -124,7 +134,7 @@
                                     </svg>
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
-                                <a href="shop-cart.html"><span class="lable" style="color:white">Cart</span></a>
+                                <a href="{{route('myCart')}}"><span class="lable" style="color:white">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul id="miniCartShow">
                                         
@@ -135,7 +145,7 @@
                                             <h4>Total <span id="cartTotal"></span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
+                                            <a href="{{route('myCart')}}" class="outline">View cart</a>
                                             <a href="shop-checkout.html">Checkout</a>
                                         </div>
                                     </div>
@@ -353,7 +363,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li  hidden="true">
                                     <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
@@ -370,7 +380,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li  hidden="true">
                                     <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="page-about.html">About Us</a></li>
@@ -386,7 +396,7 @@
                                         <li><a href="page-404.html">404 Page</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li  hidden="true">
                                     <a href="page-contact.html">Contact</a>
                                 </li>
                             </ul>

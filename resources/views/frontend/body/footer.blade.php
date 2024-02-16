@@ -115,25 +115,32 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+
+                        <div hidden="true" >
                         <li><a href="#">Delivery Information</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                         <li><a href="#">Careers</a></li>
+                       </div>
+
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <h4 class="widget-title">Account</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">View Cart</a></li>
-                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="{{ route('login') }}">Sign In</a></li>
+                        <li><a href="{{route('myCart')}}">View Cart</a></li>
+                        <li><a href="{{ route('wishlist') }}">My Wishlist</a></li>
+
+                        <div hidden="true" >
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="#">Help Ticket</a></li>
                         <li><a href="#">Shipping Details</a></li>
                         <li><a href="#">Compare products</a></li>
+                        </div>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
@@ -142,15 +149,36 @@
                         <li><a href="{{route('become.vendor')}}">Become a Vendor</a></li>
                         <li><a href="{{route('admin.login')}}">Admin</a></li>
                         <li><a href="{{route('vendor.login')}}">Vendor</a></li>
+
+                        <div hidden="true">>
                         <li><a href="#">Farm Careers</a></li>
                         <li><a href="#">Our Suppliers</a></li>
                         <li><a href="#">Accessibility</a></li>
                         <li><a href="#">Promotions</a></li>
+                        </div>
+
                     </ul>
                 </div>
+
+                @php
+                   $categories_greeen_footer = App\Models\Category::orderBy('category_name','ASC')->get();
+                @endphp 
+
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                     <h4 class="widget-title">Popular</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
+
+
+                    
+
+                    @foreach($categories_greeen_footer as $categories_greeen)
+                                        <li>
+                                            <a href="{{route('category.details',[$categories_greeen->id,$categories_greeen->category_slug])}}" target="_blank"> {{$categories_greeen->category_name}}</a>
+                                        </li>
+                    @endforeach
+
+
+                        <div hidden="true">
                         <li><a href="#">Milk & Flavoured Milk</a></li>
                         <li><a href="#">Butter and Margarine</a></li>
                         <li><a href="#">Eggs Substitutes</a></li>
@@ -158,6 +186,7 @@
                         <li><a href="#">Sour Cream and Dips</a></li>
                         <li><a href="#">Tea & Kombucha</a></li>
                         <li><a href="#">Cheese</a></li>
+                        </div>
                     </ul>
                 </div>
             
