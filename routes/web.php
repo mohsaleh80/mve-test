@@ -377,7 +377,12 @@ Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::post('/coupon-reapply', [CartController::class, 'CouponreApply']);
 
 
+// Search All Route 
+Route::controller(IndexController::class)->group(function(){
 
+    Route::post('/search' , 'ProductSearch')->name('product.search'); 
+   
+   });
 
 /// User All Route
 Route::middleware(['auth','role:user'])->group(function() {
